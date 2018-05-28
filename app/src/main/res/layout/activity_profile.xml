@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundfragment"
+    tools:context="com.example.aditya.retailerclient.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary">
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_margin="5dp"
+
+                android:id="@+id/backButton"
+                android:src="@drawable/ic_arrow_back_white_24dp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="60dp"
+
+            android:id="@+id/profileImage"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_person_black_24dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/profileImage"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Email:"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:hint="Email"
+                android:textColor="#fff"
+                android:drawablePadding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"
+                android:text="Mobile Number:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:hint="Mobile Number"
+
+                android:textColor="#fff"
+                android:drawablePadding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mbnumber"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Adhar Card:"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:hint="Adhar Card:"
+                android:textColor="#fff"
+                android:drawablePadding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AdhCard"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"
+                android:text="Pan Card:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:hint="Pan Card"
+                android:textColor="#fff"
+                android:drawablePadding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pancard"/>
+
+
+        </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_below="@+id/layout_input"
+           android:layout_marginTop="0dp"
+           android:id="@+id/editupdateBtn"
+           android:layout_margin="20dp"
+           android:weightSum="10"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               android:id="@+id/btnEditProfile"
+               android:layout_weight="5"
+               android:drawableStart="@drawable/ic_edit_white_24dp"
+               android:textColor="#fff"
+               android:text="Edit Profile"
+               android:background="@color/backgroundfragment"/>
+
+
+           <Button
+               android:layout_width="0dp"
+               android:layout_margin="10dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="5"
+               android:textColor="#fff"
+               android:id="@+id/btnUpdateProfile"
+               android:drawableStart="@drawable/ic_update_white_24dp"
+               android:text="Update Profile"
+               android:background="@color/backgroundfragment"/>
+
+       </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editupdateBtn">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundfragment"
+                android:textColor="#fff"
+                android:id="@+id/logout"
+                android:layout_marginStart="20dp"
+                android:elevation="2dp"
+                android:layout_marginEnd="20dp"
+                android:text="Log Out"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </RelativeLayout>
+
+    
+</ScrollView>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroundfragment"
+    android:layout_height="match_parent"
+    tools:context="com.example.aditya.retailerclient.ProductDetails">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:id="@+id/backbutton"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/backProductDetails"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back_white_24dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:orientation="vertical"
+            android:layout_below="@+id/backbutton">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="55">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:padding="20dp"
+                    android:id="@+id/image"
+                    android:layout_height="match_parent"
+                    android:src="@color/colorAccent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="0dp"
+                android:padding="5dp"
+                android:layout_weight="45">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:id="@+id/imagedescTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="Product Name :"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imagedesc"
+                        android:textColor="@color/white"
+                        android:layout_toEndOf="@+id/imagedescTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="productname"
+                        android:textSize="20sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:id="@+id/imageSizeTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="Product Size :"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageSize"
+                        android:textColor="@color/white"
+                        android:layout_toEndOf="@+id/imageSizeTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="productname"
+                        android:textSize="20sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:id="@+id/ProdPriceTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="Product Price :"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/prodPrice"
+                        android:textColor="@color/white"
+                        android:layout_toEndOf="@+id/ProdPriceTitle"
+                        android:layout_marginTop="20dp"
+                        android:text="productprice"
+                        android:textSize="20sp"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="20sp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/quantity"
+                        android:maxLength="4"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        app:met_baseColor="@color/colorAccent"
+                        android:inputType="number"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Add to Cart"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/ic_add_shopping_cart_white_24dp"
+                        android:id="@+id/addToCart"
+                        android:background="@color/colorAccent"
+                        android:textColor="@color/white"
+                        android:elevation="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        />
+
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+</RelativeLayout>

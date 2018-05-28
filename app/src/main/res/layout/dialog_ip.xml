@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="IP Address"
+            android:textColor="@color/dialogBackground"
+            android:textSize="29sp"
+            android:id="@+id/ipAddTitle"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/ipAddDialogText"
+            android:textSize="12sp"
+            android:textColor="@color/dialogBackground"
+            android:id="@+id/ipAddText"
+            android:layout_below="@+id/ipAddTitle"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/ipAddText"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:id="@+id/ipTotal"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="60dp"
+                android:id="@+id/ip1"
+                android:layout_margin="3dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="3"
+                app:met_baseColor="@color/dialogBackground"
+                app:met_underlineColor="@color/dialogBackground"
+                android:background="@color/dialogBackground"/>
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="60dp"
+
+                android:id="@+id/ip2"
+                android:layout_margin="3dp"
+                android:maxLength="3"
+                app:met_baseColor="@color/dialogBackground"
+                app:met_underlineColor="@color/dialogBackground"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="60dp"
+                app:met_baseColor="@color/dialogBackground"
+                app:met_underlineColor="@color/dialogBackground"
+                android:layout_margin="3dp"
+                android:maxLength="3"
+                android:id="@+id/ip3"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="60dp"
+                android:id="@+id/ip4"
+                android:layout_margin="3dp"
+                android:maxLength="3"
+                app:met_baseColor="@color/dialogBackground"
+                app:met_underlineColor="@color/dialogBackground"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

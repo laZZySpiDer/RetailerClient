@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.example.aditya.retailerclient.LoginPage">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:id="@+id/configureLayout"
+            android:layout_height="wrap_content">
+
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:id="@+id/btnconfigure"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:background="#fff"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="#232323"
+                android:id="@+id/txtconfigure"
+                android:layout_gravity="center"
+                android:text="Configure"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageView"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/main_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="150dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+
+            >
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:textColorHint="#000"
+                android:id="@+id/username"
+                android:inputType="text"
+                app:met_floatingLabel="highlight"
+
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:id="@+id/passwd"
+                app:met_floatingLabel="highlight"
+                />
+
+            <Button
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Log In"
+                android:layout_marginTop="10dp"
+                android:id="@+id/lgin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/frgtpwd"
+                android:layout_marginTop="25dp"
+                android:text="Forgot Password"/>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
