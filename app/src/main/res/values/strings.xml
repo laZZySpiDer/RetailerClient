@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RetailerClient</string>
+    <string name="app_name">Shree Hari Homes</string>
     <string name="title_activity_cart">CartActivity</string>
     <string name="IpDialogtext">Enter the Address given by Admin</string>
     <string name="ipAddDialogText">Enter the Address given by Admin</string>

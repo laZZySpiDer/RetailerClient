@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aditya.retailerclient.Model.UserProfile;
@@ -23,10 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText email,mbnumber,adhar,pan;
+    private TextView email,mbnumber,adhar,pan,uaddress,uname,gst;
     Button btnEdit;
     Button btnUpdate;
-    Button logOut;
+    TextView logOut;
     ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,61 +36,39 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         ///initializing the button and edit text
-        btnEdit = findViewById(R.id.btnEditProfile);
-        btnUpdate = findViewById(R.id.btnUpdateProfile);
-        email = (EditText) findViewById(R.id.email);
-        mbnumber = (EditText) findViewById(R.id.mbnumber);
-        adhar = (EditText) findViewById(R.id.AdhCard);
-        pan = (EditText) findViewById(R.id.pancard);
+
+        uaddress = (TextView) findViewById(R.id.uaddress);
+        uname = (TextView) findViewById(R.id.uname);
+        email = (TextView) findViewById(R.id.email);
+        gst = (TextView) findViewById(R.id.gst);
+        mbnumber = (TextView) findViewById(R.id.mbnumber);
+        adhar = (TextView) findViewById(R.id.AdhCard);
+        pan = (TextView) findViewById(R.id.pancard);
         back = findViewById(R.id.backButton);
         logOut = findViewById(R.id.logout);
 
         //call intent initializer to initialize some effects
         updateIntent();
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnUpdate.setEnabled(true);
-                editProfile();
-            }
-        });
 
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateProfileDb();
-            }
-        });
 
+
+        //when back button is pressed go to Dashboard Activity
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnUpdate.isEnabled()){
-                    Toast.makeText(ProfileActivity.this, "First Save the changes using update button",
-                            Toast.LENGTH_SHORT).show();
-
-                }else{
                     Intent intent = new Intent(ProfileActivity.this,Dashboard.class);
                     startActivity(intent);
                     finish();
-                }
-
             }
         });
 
+        //Logout the user from the app and then redirect to login page
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnUpdate.isEnabled()){
-                    Toast.makeText(ProfileActivity.this, "First Save the changes using update button",
-                            Toast.LENGTH_SHORT).show();
-
-                }else{
-                    logOutUser();
-                }
-
+                logOutUser();
             }
         });
 
@@ -139,39 +118,17 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        btnEdit.setEnabled(true);
-        btnUpdate.setEnabled(false);
-        email.setEnabled(false);
-        mbnumber.setEnabled(false);
-        pan.setEnabled(false);
-        adhar.setEnabled(false);
-
     }
 
 
-    //to allow editig the fields of personal info
-    private void editProfile() {
-
-        email.setEnabled(true);
-        mbnumber.setEnabled(true);
-        pan.setEnabled(true);
-        adhar.setEnabled(true);
-        btnEdit.setEnabled(false);
-
-    }
 
 
     //update intent with the data from database
     private void updateIntent() {
-        btnUpdate.setTextColor(getResources().getColor(R.color.grey));
-        btnUpdate.setEnabled(false);
 
-        email.setEnabled(false);
-        mbnumber.setEnabled(false);
-        pan.setEnabled(false);
-        adhar.setEnabled(false);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstValues.link+API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -185,10 +142,13 @@ public class ProfileActivity extends AppCompatActivity {
                 List<UserProfile> profile = response.body();
                 for (UserProfile prof : profile) {
 
-                    email.setText(prof.getU_email());
-                    mbnumber.setText(prof.getU_whatsapp());
-                    adhar.setText(prof.getU_adhar());
-                    pan.setText(prof.getU_Pan());
+                    email.setText("EMAIL :  "+prof.getU_email());
+                    mbnumber.setText("PHONE :  " +prof.getU_whatsapp());
+                    adhar.setText("ADHAR :  " + prof.getU_adhar());
+                    pan.setText("PAN :  "+ prof.getU_Pan());
+                    uaddress.setText("ADDRESS :   "+prof.getU_add());
+                    gst.setText("GST :   "+prof.getU_GST());
+                    uname.setText("NAME :   "+ prefs.getString("username",""));
                 }
             }
             @Override

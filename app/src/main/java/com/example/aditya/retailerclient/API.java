@@ -33,9 +33,9 @@ public interface API {
 //  Call<List<UserCred>> getUser (@Path("id") String id);
 ////
 
-//////////////////////////////////////////////////////////////////////
-//   public String BASE_URL = "/webapp/";
-    public String BASE_URL = "/phpservice/";
+////////////////////////////////////////////////////////////////
+   public String BASE_URL = "/webapp/";
+//     public String BASE_URL = "/phpservice/";
 
     @GET("userCredentials.php")
     Call<List<UserCred>> getUser (@Query("name") String name);

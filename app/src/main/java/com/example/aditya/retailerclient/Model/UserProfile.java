@@ -11,13 +11,33 @@ public class UserProfile {
     public String U_whatsapp;
     public String U_adhar;
     public String U_Pan;
+    public String U_add;
+    public String U_GST;
 
-    public UserProfile(String u_name_FK, String u_email, String u_whatsapp, String u_adhar, String u_Pan) {
+    public UserProfile(String u_name_FK, String u_email, String u_whatsapp, String u_adhar, String u_Pan,String u_add,String u_gst) {
         U_name_FK = u_name_FK;
         U_email = u_email;
         U_whatsapp = u_whatsapp;
         U_adhar = u_adhar;
         U_Pan = u_Pan;
+        U_add = u_add;
+        U_GST = u_gst;
+    }
+
+    public String getU_add() {
+        return U_add;
+    }
+
+    public void setU_add(String u_add) {
+        U_add = u_add;
+    }
+
+    public String getU_GST() {
+        return U_GST;
+    }
+
+    public void setU_GST(String u_GST) {
+        U_GST = u_GST;
     }
 
     public String getU_name_FK() {

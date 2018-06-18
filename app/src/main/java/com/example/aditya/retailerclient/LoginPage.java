@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginPage extends AppCompatActivity {
     private MaterialEditText user,passwd;
     private Button lginBtn;
-    private LinearLayout configure;
+
     private TextView frgtpwd;
     SharedPreferences prefs;
 
@@ -68,7 +68,7 @@ public class LoginPage extends AppCompatActivity {
         passwd = findViewById(R.id.passwd);
         lginBtn = findViewById(R.id.lgin);
         frgtpwd = findViewById(R.id.frgtpwd);
-        configure = findViewById(R.id.configureLayout);
+
 
 
         //login button event

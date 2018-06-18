@@ -63,7 +63,7 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
 
         holder.myOrderPname.setText(mData.get(position).getP_name());
         holder.myOrderPquant.setText(String.valueOf(mData.get(position).getQuantity()));
-        holder.myOrderPprice.setText(String.valueOf(mData.get(position).getTotal_Price()));
+        holder.myOrderPprice.setText(" "+String.valueOf(mData.get(position).getTotal_Price()));
         holder.myOrderPstatus.setText(mData.get(position).getSTATE());
         Glide.with(mContext).load(ConstValues.Billimagelink + mData.get(position).getFinal_bill()).into(holder.myOrderImage);
 

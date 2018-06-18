@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -139,7 +140,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
 
         holder.P_name.setText(mData.get(position).getP_name());
-        holder.P_price.setText("Rs."+String.valueOf(mData.get(position).getPrice()));
+        holder.P_price.setText("\u20B9"+" "+String.valueOf(mData.get(position).getPrice()));
         Glide.with(mContext).load(ConstValues.Prodimagelink +mData.get(position).getP_image()).into(holder.P_image);
 
         //image click listener
@@ -188,7 +189,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        private LinearLayout item_product;
+        private CardView item_product;
         private TextView P_name;
         private TextView P_price;
         private ImageView P_image;
@@ -196,7 +197,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            item_product = (LinearLayout)itemView.findViewById(R.id.product_item);
+            item_product = (CardView)itemView.findViewById(R.id.product_item);
             P_name = (TextView)itemView.findViewById(R.id.product_name);
             P_price = (TextView)itemView.findViewById(R.id.product_price);
             P_image = (ImageView)itemView.findViewById(R.id.product_image);

@@ -88,12 +88,12 @@ public class FragmentProduct extends Fragment {
 
                 List<ProductDisplay> prod = response.body();
                 // data_list.addAll(prod);
-
-                for(ProductDisplay product : prod ){
-                    lstProduct.add(product);
+                try{
+                    lstProduct.addAll(prod);
+                    adapter.notifyDataSetChanged();
+                }catch(NullPointerException e){
+                    Toast.makeText(getContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                 }
-                adapter.notifyDataSetChanged();
-
             }
 
             @Override

@@ -30,7 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProductDetails extends AppCompatActivity {
-    Button btnPurchase;
+    Button btnPurchase,btnIncrease,btnDecrease;
     MaterialEditText quant;
     ImageView backButton;
     @Override
@@ -43,6 +43,8 @@ public class ProductDetails extends AppCompatActivity {
         btnPurchase = (Button)findViewById(R.id.addToCart);
         quant = (MaterialEditText)findViewById(R.id.quantity);
         backButton = (ImageView)findViewById(R.id.backProductDetails);
+        btnDecrease = (Button)findViewById(R.id.btnDecrease);
+        btnIncrease = (Button)findViewById(R.id.btnIncrease);
         quant.setText("1");
 
         btnPurchase.setOnClickListener(new View.OnClickListener() {
@@ -69,9 +71,44 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
 
+        btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreaseQty();
+            }
+        });
+
+
+        btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseQty();
+            }
+        });
+
     }
 
 
+    private void decreaseQty(){
+        if(Integer.parseInt(quant.getText().toString())<=0){
+            Toast.makeText(this, "Cannot Decrease more Value", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            int qty = Integer.parseInt(quant.getText().toString()) - 1;
+            quant.setText(String.valueOf(qty));
+        }
+
+    }
+
+    private void increaseQty(){
+        if(Integer.parseInt(quant.getText().toString())>=9999){
+            Toast.makeText(this, "Cannot Increase more Value", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            int qty = Integer.parseInt(quant.getText().toString()) + 1;
+            quant.setText(String.valueOf(qty));
+        }
+    }
 
 
 
@@ -125,7 +162,7 @@ public class ProductDetails extends AppCompatActivity {
         TextView size = findViewById(R.id.imageSize);
         size.setText(imageSize);
         TextView price = findViewById(R.id.prodPrice);
-        price.setText(prodPrice);
+        price.setText("\u20B9"+" "+prodPrice);
         ImageView image =findViewById(R.id.image);
         Log.d("ABCDEFGH",imageUrl);
         Glide.with(ProductDetails.this).load(ConstValues.Prodimagelink + imageUrl).into(image);
