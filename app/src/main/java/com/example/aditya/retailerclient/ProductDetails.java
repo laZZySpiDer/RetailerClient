@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProductDetails extends AppCompatActivity {
     Button btnPurchase,btnIncrease,btnDecrease;
+    TextView dynamicPrice;
     MaterialEditText quant;
     ImageView backButton;
     @Override
@@ -45,6 +48,7 @@ public class ProductDetails extends AppCompatActivity {
         backButton = (ImageView)findViewById(R.id.backProductDetails);
         btnDecrease = (Button)findViewById(R.id.btnDecrease);
         btnIncrease = (Button)findViewById(R.id.btnIncrease);
+        dynamicPrice = (TextView)findViewById(R.id.dynamicprice);
         quant.setText("1");
 
         btnPurchase.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,22 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
 
+        quant.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -151,18 +171,44 @@ public class ProductDetails extends AppCompatActivity {
             String imagename = getIntent().getStringExtra("image_name");
             String imageSize = getIntent().getStringExtra("image_size");
             String prodPrice = getIntent().getStringExtra("prod_price");
-            setImage(imageUrl,imagename,imageSize,prodPrice);
+            String gst = getIntent().getStringExtra("gst");
+            String ipq = getIntent().getStringExtra("ipq");
+            String desc = getIntent().getStringExtra("desc");
+            setProductDetails(imageUrl,imagename,imageSize,prodPrice,gst,ipq,desc);
         }
     }
 
 
-    private void setImage(String imageUrl,String imageName,String imageSize,String prodPrice){
+    private void setProductDetails(String imageUrl,String imageName,String imageSize,String prodPrice,String gst,String ipq,String desc){
+
+        //set the product name
         TextView name = findViewById(R.id.imagedesc);
         name.setText(imageName);
+
+        //set the size of the product
         TextView size = findViewById(R.id.imageSize);
         size.setText(imageSize);
+
+        //set the ipqdetails of the product
+        TextView ipqDetails = findViewById(R.id.ipq);
+        ipqDetails.setText(ipq);
+
+        //set the image descriotion of the product
+        TextView imageDescription = findViewById(R.id.imgDescription);
+        imageDescription.setText(desc);
+
+
+
+
+        //calculate GST and show GST Price
         TextView price = findViewById(R.id.prodPrice);
-        price.setText("\u20B9"+" "+prodPrice);
+        Double priceInitial = Double.parseDouble(prodPrice);
+        Double gstFinal = Double.parseDouble(gst);
+        Double finalPrice = priceInitial * (gstFinal /100);
+        finalPrice += priceInitial;
+        price.setText("\u20B9"+" "+Double.toString(finalPrice)+" (with GST)");
+
+
         ImageView image =findViewById(R.id.image);
         Log.d("ABCDEFGH",imageUrl);
         Glide.with(ProductDetails.this).load(ConstValues.Prodimagelink + imageUrl).into(image);

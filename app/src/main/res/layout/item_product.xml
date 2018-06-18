@@ -65,12 +65,24 @@
         <LinearLayout
             android:gravity="end"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GST :"
+                android:textColor="@color/white"
+                android:id="@+id/gstValue"
 
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="14dp"
+                />
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="25dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/cartImage"
                 android:src="@drawable/ic_add_shopping_cart_white_24dp" />

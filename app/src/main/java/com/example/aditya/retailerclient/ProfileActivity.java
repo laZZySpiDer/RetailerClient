@@ -25,10 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView email,mbnumber,adhar,pan,uaddress,uname,gst;
-    Button btnEdit;
-    Button btnUpdate;
+
     TextView logOut;
-    ImageView back;
+    ImageView back,personalInfo,otherInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
         pan = (TextView) findViewById(R.id.pancard);
         back = findViewById(R.id.backButton);
         logOut = findViewById(R.id.logout);
+        personalInfo = findViewById(R.id.editPersonalInfo);
+        otherInfo = findViewById(R.id.editOtherInfo);
 
         //call intent initializer to initialize some effects
         updateIntent();
@@ -61,6 +62,29 @@ public class ProfileActivity extends AppCompatActivity {
                     Intent intent = new Intent(ProfileActivity.this,Dashboard.class);
                     startActivity(intent);
                     finish();
+            }
+        });
+
+        personalInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this,EditPersonalInfo.class);
+                intent.putExtra("name",uname.getText().toString());
+                intent.putExtra("phone",mbnumber.getText().toString());
+                intent.putExtra("email",email.getText().toString());
+                intent.putExtra("address",uaddress.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        otherInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this,EditOtherInfo.class);
+                intent.putExtra("adhar",adhar.getText().toString());
+                intent.putExtra("gst",gst.getText().toString());
+                intent.putExtra("pan",pan.getText().toString());
+                startActivity(intent);
             }
         });
 
@@ -89,36 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    //profile to update the data to database
-    private void updateProfileDb() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String Email = email.getText().toString();
-        String Mb = mbnumber.getText().toString();
-        String Adharcard = adhar.getText().toString();
-        String Pancard = pan.getText().toString();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ConstValues.link+API.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        API api = retrofit.create(API.class);
-        Call<List<UserProfile>> call = api.updateProfile(prefs.getString("username",""),Email,Mb,Adharcard,Pancard);
-        call.enqueue(new Callback<List<UserProfile>>() {
-            @Override
-            public void onResponse(Call<List<UserProfile>> call, Response<List<UserProfile>> response) {
-                Toast.makeText(getApplicationContext(), "Saved Successfully", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFailure(Call<List<UserProfile>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Saved Successfully", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-    }
 
 
 
@@ -142,13 +137,13 @@ public class ProfileActivity extends AppCompatActivity {
                 List<UserProfile> profile = response.body();
                 for (UserProfile prof : profile) {
 
-                    email.setText("EMAIL :  "+prof.getU_email());
-                    mbnumber.setText("PHONE :  " +prof.getU_whatsapp());
-                    adhar.setText("ADHAR :  " + prof.getU_adhar());
-                    pan.setText("PAN :  "+ prof.getU_Pan());
-                    uaddress.setText("ADDRESS :   "+prof.getU_add());
-                    gst.setText("GST :   "+prof.getU_GST());
-                    uname.setText("NAME :   "+ prefs.getString("username",""));
+                    email.setText(prof.getU_email());
+                    mbnumber.setText(prof.getU_whatsapp());
+                    adhar.setText(prof.getU_adhar());
+                    pan.setText(prof.getU_Pan());
+                    uaddress.setText(prof.getU_add());
+                    gst.setText(prof.getU_GST());
+                    uname.setText(prefs.getString("username",""));
                 }
             }
             @Override

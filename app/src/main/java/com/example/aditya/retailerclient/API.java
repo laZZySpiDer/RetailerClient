@@ -82,10 +82,14 @@ public interface API {
     Call<List<UserProfile>> getprofiledata(@Query("U_name_FK") String U_name_FK);
 
     @FormUrlEncoded
-    @POST("updateprofile.php")
-    Call<List<UserProfile>> updateProfile(@Field("U_name_FK") String U_name_FK,@Field("U_email") String U_email,
-                                           @Field("U_whatsapp") String U_whatsapp, @Field("U_adhar") String U_adhar,
-                                          @Field("U_Pan") String U_Pan);
+    @POST("updateprofilePersonal.php")
+    Call<List<UserProfile>> updateProfilePersonal(@Field("U_name_FK") String U_name_FK,@Field("U_email") String U_email,
+                                           @Field("U_whatsapp") String U_whatsapp, @Field("U_address") String U_address);
+
+    @FormUrlEncoded
+    @POST("updateprofileOther.php")
+    Call<List<UserProfile>> updateProfileOther(@Field("U_name_FK") String U_name_FK,@Field("U_GST") String U_email,
+                                                  @Field("U_adhar") String U_whatsapp, @Field("U_Pan") String U_address);
 
 
     @GET("resetpassword.php")

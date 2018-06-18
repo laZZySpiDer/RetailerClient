@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Dashboard" />
-        <activity android:name=".LoginPage">
-
-        </activity>
+        <activity android:name=".LoginPage" />
         <activity
             android:name=".CartActivity"
             android:label="@string/title_activity_cart"
@@ -22,11 +20,15 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ProductDetails" />
         <activity android:name=".ParentWiseProducts" />
-        <activity android:name=".WalkThrough">  <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".WalkThrough">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".EditPersonalInfo" />
+        <activity android:name=".EditOtherInfo"></activity>
     </application>
 
 </manifest>

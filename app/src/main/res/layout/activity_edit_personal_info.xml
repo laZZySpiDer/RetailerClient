@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundfragment"
+    tools:context="com.example.aditya.retailerclient.EditPersonalInfo">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userdetails"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/white"
+                   android:hint="Name"
+                   android:inputType="text"
+                   android:layout_marginTop="10dp"
+                   android:id="@+id/editedName"
+                   android:textColorHint="#a7a3a3"
+                   />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:id="@+id/editedPhoneNumber"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="#a7a3a3"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/editedEmail"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="#a7a3a3"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:hint="Home/Office Address"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/editedAddress"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="#a7a3a3"
+                    />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/userdetails"
+            android:id="@+id/cardExitwithoutsaving"
+            android:background="#0af144"
+            app:cardCornerRadius="5dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/exitwithsaving"
+                android:text="Save and Exit"
+                android:background="#0af144"/>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/cardexitwithoutsaving"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@+id/cardExitwithoutsaving"
+            android:background="#f22409"
+            app:cardCornerRadius="5dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Exit Without Saving"
+                android:id="@+id/exitwithoutsaving"
+                android:background="#f22409"/>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

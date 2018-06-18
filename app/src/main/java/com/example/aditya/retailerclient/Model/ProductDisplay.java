@@ -14,8 +14,11 @@ public class ProductDisplay {
     int PP_id_FK;
     String P_image;
     Double Price;
+    Double P_Gst;
+    String P_desc;
+    int P_Ipq;
 
-    public ProductDisplay(int p_id_FK, String p_name, int p_stock, Double p_size, int PP_id_FK, String p_image, Double price) {
+    public ProductDisplay(int p_id_FK, String p_name, int p_stock, Double p_size, int PP_id_FK, String p_image, Double price, Double p_gst,String p_desc,int p_ipq) {
         P_id = p_id_FK;
         P_name = p_name;
         P_stock = p_stock;
@@ -23,6 +26,41 @@ public class ProductDisplay {
         this.PP_id_FK = PP_id_FK;
         P_image =  p_image;
         Price = price;
+        P_Gst = p_gst;
+        P_desc = p_desc;
+        P_Ipq = p_ipq;
+    }
+
+    public int getP_id() {
+        return P_id;
+    }
+
+    public void setP_id(int p_id) {
+        P_id = p_id;
+    }
+
+    public Double getP_Gst() {
+        return P_Gst;
+    }
+
+    public void setP_Gst(Double p_Gst) {
+        P_Gst = p_Gst;
+    }
+
+    public String getP_desc() {
+        return P_desc;
+    }
+
+    public void setP_desc(String p_desc) {
+        P_desc = p_desc;
+    }
+
+    public int getP_Ipq() {
+        return P_Ipq;
+    }
+
+    public void setP_Ipq(int p_Ipq) {
+        P_Ipq = p_Ipq;
     }
 
     public int getP_id_FK() {

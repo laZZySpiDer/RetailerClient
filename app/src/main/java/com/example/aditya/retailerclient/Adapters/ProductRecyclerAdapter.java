@@ -141,6 +141,15 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
         holder.P_name.setText(mData.get(position).getP_name());
         holder.P_price.setText("\u20B9"+" "+String.valueOf(mData.get(position).getPrice()));
+
+        //find GST price
+        Double priceInitial = mData.get(position).getPrice();
+        Double gstFinal = mData.get(position).getP_Gst();
+        Double finalPrice = priceInitial * (gstFinal /100);
+        finalPrice += priceInitial;
+        holder.P_gstprice.setText("\u20B9"+" "+Double.toString(finalPrice)+" (with GST)");
+        holder.P_innerPackQuantity.setText("Inner Pack Quantity : " + String.valueOf(mData.get(position).getP_Ipq()));
+        holder.P_gstValue.setText("GST  :  " + String.valueOf(mData.get(position).getP_Gst()));
         Glide.with(mContext).load(ConstValues.Prodimagelink +mData.get(position).getP_image()).into(holder.P_image);
 
         //image click listener
@@ -168,7 +177,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                 intent.putExtra("prodId",mData.get(position).getP_id_FK());
                 intent.putExtra("image_size",Double.toString(mData.get(position).getP_size()));
                 intent.putExtra("prod_price",Double.toString(mData.get(position).getPrice()));
-
+                intent.putExtra("gst",Double.toString(mData.get(position).getP_Gst()));
+                intent.putExtra("ipq",Integer.toString(mData.get(position).getP_Ipq()));
+                intent.putExtra("desc",mData.get(position).getP_desc());
                 mContext.startActivity(intent);
             }
         });
@@ -194,6 +205,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         private TextView P_price;
         private ImageView P_image;
         private ImageView P_cart;
+        private TextView P_gstprice;
+        private TextView P_innerPackQuantity;
+        private TextView P_gstValue;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -202,6 +216,10 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             P_price = (TextView)itemView.findViewById(R.id.product_price);
             P_image = (ImageView)itemView.findViewById(R.id.product_image);
             P_cart = (ImageView)itemView.findViewById(R.id.cartImage);
+            P_gstprice = (TextView)itemView.findViewById(R.id.product_price_GST);
+            P_gstValue = (TextView)itemView.findViewById(R.id.gstValue);
+
+            P_innerPackQuantity = (TextView)itemView.findViewById(R.id.inner_pack_quantity);
         }
     }
 
