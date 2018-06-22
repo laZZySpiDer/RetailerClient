@@ -109,7 +109,12 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     //dialogue box add to cart button event
     private void addToCartDirectly(final MyViewHolder holder,int quantity){
        int prodId =  mData.get(holder.getAdapterPosition()).getP_id_FK();
-       Double TotalPrice = quantity * mData.get(holder.getAdapterPosition()).getPrice();
+
+        //find GST price
+        Double priceInitial = mData.get(holder.getAdapterPosition()).getPrice();
+        Double gstFinal = mData.get(holder.getAdapterPosition()).getP_Gst();
+        Double finalPrice = priceInitial * (gstFinal /100);
+        finalPrice += priceInitial;
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
@@ -118,7 +123,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         API api = retrofit.create(API.class);
-        Call<Void> call = api.addtoCart(prefs.getString("username",""),prodId,quantity,TotalPrice);
+        Call<Void> call = api.addtoCart(prefs.getString("username",""),prodId,quantity,(quantity*finalPrice));
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

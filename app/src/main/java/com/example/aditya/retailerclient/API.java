@@ -2,6 +2,7 @@ package com.example.aditya.retailerclient;
 
 import com.example.aditya.retailerclient.Model.CartDisplay;
 import com.example.aditya.retailerclient.Model.MyOrder;
+import com.example.aditya.retailerclient.Model.Offers;
 import com.example.aditya.retailerclient.Model.ProductDisplay;
 import com.example.aditya.retailerclient.Model.ProductParent;
 import com.example.aditya.retailerclient.Model.UserCred;
@@ -102,6 +103,9 @@ public interface API {
 
     @GET("removeAllFromCart.php")
     Call<List<Void>> emptyCart(@Query("U_name_FK") String U_name_FK);
+
+    @GET("getAllOffers.php")
+    Call<List<Offers>> getAllOffers();
 //
 //    @GET("resetpassword.php")
 //    Call<List<UserCred>> getphonenumber(@Query("phnnumber") String phonenumber);

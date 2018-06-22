@@ -75,7 +75,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
         holder.cart_P_name.setText(mData.get(position).getP_name());
         holder.cart_P_quantity.setText("Quantity : "+String.valueOf(mData.get(position).getQuantity()));
-        holder.cart_P_price.setText("INR."+String.valueOf(mData.get(position).getPrice()));
+
+        holder.cart_P_price.setText("\u20B9"+String.valueOf(mData.get(position).getPrice()));
         Glide.with(mContext).load(ConstValues.Prodimagelink + mData.get(position).getP_image()).into(holder.p_image);
 
 
@@ -106,12 +107,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 .baseUrl(ConstValues.link+API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         API api = retrofit.create(API.class);
-
-
-
-
     }
 
     private void RemoveFromCart(int position){

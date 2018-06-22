@@ -69,7 +69,7 @@ public class LoginPage extends AppCompatActivity {
         lginBtn = findViewById(R.id.lgin);
         frgtpwd = findViewById(R.id.frgtpwd);
 
-
+        String temp = user.getText().toString();
 
         //login button event
         lginBtn.setOnClickListener(new View.OnClickListener() {
