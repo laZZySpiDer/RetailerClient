@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.aditya.retailerclient.Adapters.DashboardViewPageAdapter;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentCategory;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentMyOrder;
+import com.example.aditya.retailerclient.FragmentsDashboard.FragmentOffers;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentProduct;
 
 public class Dashboard extends AppCompatActivity {
@@ -41,10 +42,10 @@ public class Dashboard extends AppCompatActivity {
 
         //add the fragments here
         //adapter.AddFragment(new FragmentMyOrder(),"Notifications");
-        //adapter.AddFragment(new FragmentCart(),"Cart");
-        adapter.AddFragment(new FragmentProduct(),"Products");
 
+        adapter.AddFragment(new FragmentProduct(),"Products");
         adapter.AddFragment(new FragmentCategory(),"Category");
+        adapter.AddFragment(new FragmentOffers(),"Offers");
         adapter.AddFragment(new FragmentMyOrder(),"My Orders");
 
 

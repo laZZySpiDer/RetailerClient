@@ -46,7 +46,7 @@ public class CartActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     API api;
     SwipeRefreshLayout swipedown;
-    Double reducedNumber;
+    Double grandTotalNoDiscount;
 
 
     @Override
@@ -111,8 +111,10 @@ public class CartActivity extends AppCompatActivity {
                     Toast.makeText(CartActivity.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    getAllOffers();
-                    purchaseCartContent();
+                    //to get and check whether offer is available or not
+                     purchaseCartContent();
+                     getAllOffers();
+
                 }
 
             }
@@ -123,7 +125,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                if(lstCart.isEmpty()){
-
+                   Toast.makeText(CartActivity.this, "Cart is Already Empty", Toast.LENGTH_SHORT).show();
                }else{
                    removeCartContent();
                }
@@ -140,8 +142,8 @@ public class CartActivity extends AppCompatActivity {
        }
         grandTotalList.clear();
         DecimalFormat numberFormat = new DecimalFormat("#.00");
-        reducedNumber = Double.valueOf(numberFormat.format(totalPriceInCart));
-        grandTotalLayout.setText(String.valueOf(reducedNumber));
+        grandTotalNoDiscount = Double.valueOf(numberFormat.format(totalPriceInCart));
+        grandTotalLayout.setText(String.valueOf(grandTotalNoDiscount));
     }
 
 
@@ -161,14 +163,16 @@ public class CartActivity extends AppCompatActivity {
                 List<Offers> newOffers = response.body();
                 lstOffer.clear();
                 for(Offers offers : newOffers){
-                    if(reducedNumber >= offers.getOffer_Min_Amount() && reducedNumber <= offers.getOffer_Max_Amount() && offers.getValid().equals("ENABLE")){
+                    if(grandTotalNoDiscount >= offers.getOffer_Min_Amount() && grandTotalNoDiscount <= offers.getOffer_Max_Amount() && offers.getValid().equals("ENABLE")){
+                        Toast.makeText(CartActivity.this, "Offer Available", Toast.LENGTH_SHORT).show();
+                        addToBill(grandTotalNoDiscount,offers.getDiscount());
 
                     }else{
-
+                        //Toast.makeText(CartActivity.this, "No Offer Available", Toast.LENGTH_SHORT).show();
                     }
                     lstOffer.add(offers);
                 }
-                adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -180,8 +184,39 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
+    //function to add data and discount to the bill
+    private void addToBill(Double grandTotalNoDiscount, double discount) {
+        //resume from here.
+        //have to send total amount,final amount,discount,username(user_id) to the table
+        //and then the purchasing normal process should be resumed
+        Double grandTotalWithDiscount;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstValues.link+API.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-
+        if(discount >0){
+            //if discount is applied then we find the final amount that is to applied to the total amount
+            grandTotalWithDiscount = grandTotalNoDiscount - (grandTotalNoDiscount * (discount/100));
+        }else{
+            //if no discount is found than will keep both initial and final value equal
+            grandTotalWithDiscount = grandTotalNoDiscount ;
+        }
+        api = retrofit.create(API.class);
+        String usernameAuto = prefs.getString("username","");
+        Call<List<Void>> call = api.addBillTableData(usernameAuto,grandTotalNoDiscount,grandTotalWithDiscount,discount);
+        call.enqueue(new Callback<List<Void>>() {
+            @Override
+            public void onResponse(Call<List<Void>> call, Response<List<Void>> response) {
+                Toast.makeText(CartActivity.this, "Changes are made to bill table", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(Call<List<Void>> call, Throwable t) {
+                //  Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
     private void loadCartIntent(){

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_margin="25dp"
     android:elevation="10dp"
-    android:background="#fff"
+    android:background="@color/cardview_dark_background"
     android:layout_height="wrap_content">
 
     <Button
@@ -13,6 +13,7 @@
         android:layout_height="20dp"
         android:id="@+id/myordercancel"
         android:text="X"
+        android:visibility="invisible"
         android:background="#fff"
         android:textColor="#000"
         android:layout_gravity="end"
@@ -36,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/myorderpname"
                 android:textSize="20sp"
+                android:textColor="@color/white"
                 android:text="Product Name"/>
 
             <LinearLayout
@@ -46,7 +48,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:textColor="@color/white"
                     android:text="Quantity : "
                     />
 
@@ -56,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/myorderpquant"
                     android:text="20"
+                    android:textColor="@color/white"
                     />
 
             </LinearLayout>
@@ -68,11 +71,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="\u20B9"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:id="@+id/myorderprice"
                     android:text="2000"
                     />
@@ -88,12 +93,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="Status :"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/myorderstatus"
+                    android:textColor="@color/white"
                     android:text="2000"
                     />
 

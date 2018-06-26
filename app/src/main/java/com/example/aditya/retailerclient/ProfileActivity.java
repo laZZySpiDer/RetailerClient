@@ -26,7 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView email,mbnumber,adhar,pan,uaddress,uname,gst;
 
-    TextView logOut;
+    TextView logOut,changePwd;
     ImageView back,personalInfo,otherInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         logOut = findViewById(R.id.logout);
         personalInfo = findViewById(R.id.editPersonalInfo);
         otherInfo = findViewById(R.id.editOtherInfo);
-
+        changePwd = findViewById(R.id.changePasswordTxt);
         //call intent initializer to initialize some effects
         updateIntent();
 
@@ -88,6 +88,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        changePwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this,ChangePassword.class);
+                startActivity(intent);
+            }
+        });
         //Logout the user from the app and then redirect to login page
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

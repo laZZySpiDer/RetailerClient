@@ -36,6 +36,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView dynamicPrice;
     MaterialEditText quant;
     ImageView backButton;
+    Double finalPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +136,7 @@ public class ProductDetails extends AppCompatActivity {
     private void addToCartEvent() {
             int quantity = Integer.parseInt(quant.getText().toString());
             int prodId = getIntent().getIntExtra("prodId",0);
-            Double TotalPrice = quantity * Double.parseDouble(getIntent().getStringExtra("prod_price"));
+            Double TotalPrice = quantity * finalPrice;
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -204,7 +205,7 @@ public class ProductDetails extends AppCompatActivity {
         TextView price = findViewById(R.id.prodPrice);
         Double priceInitial = Double.parseDouble(prodPrice);
         Double gstFinal = Double.parseDouble(gst);
-        Double finalPrice = priceInitial * (gstFinal /100);
+        finalPrice = priceInitial * (gstFinal /100);
         finalPrice += priceInitial;
         price.setText("\u20B9"+" "+Double.toString(finalPrice)+" (with GST)");
 

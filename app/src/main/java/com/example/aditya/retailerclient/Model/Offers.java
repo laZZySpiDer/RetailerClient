@@ -10,7 +10,25 @@ public class Offers {
     private double Offer_Min_Amount;
     private double Offer_Max_Amount;
     private String Valid;
+    private String Description;
+    private String Offer_Title;
     private double Discount;
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getOffer_Title() {
+        return Offer_Title;
+    }
+
+    public void setOffer_Title(String offer_Title) {
+        Offer_Title = offer_Title;
+    }
 
     public int getOffer_Id() {
         return Offer_Id;
@@ -52,11 +70,13 @@ public class Offers {
         Discount = discount;
     }
 
-    public Offers(int offer_Id, double offer_Min_Amount, double offer_Max_Amount, String valid, double discount) {
+    public Offers(int offer_Id, double offer_Min_Amount, double offer_Max_Amount, String valid, double discount, String description, String offer_title) {
         Offer_Id = offer_Id;
         Offer_Min_Amount = offer_Min_Amount;
         Offer_Max_Amount = offer_Max_Amount;
         Valid = valid;
         Discount = discount;
+        Description = description;
+        Offer_Title = offer_title;
     }
 }

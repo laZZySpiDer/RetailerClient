@@ -106,6 +106,16 @@ public interface API {
 
     @GET("getAllOffers.php")
     Call<List<Offers>> getAllOffers();
+
+
+    @FormUrlEncoded
+    @POST("addBillTableData.php")
+    Call<List<Void>> addBillTableData(@Field("U_name_FK") String U_name_FK,@Field("Total_Amount") Double Total_Amount,
+                                               @Field("Final_Amount") Double Final_Amount, @Field("Discount") Double Discount);
+
+    @GET("changePassword.php")
+    Call<List<Void>> changePassword(@Query("U_name_FK") String U_name_FK,@Query("new_Password") String newPassword);
+
 //
 //    @GET("resetpassword.php")
 //    Call<List<UserCred>> getphonenumber(@Query("phnnumber") String phonenumber);

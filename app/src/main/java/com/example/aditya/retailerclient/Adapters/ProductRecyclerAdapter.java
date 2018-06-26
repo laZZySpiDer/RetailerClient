@@ -44,6 +44,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     String username;
     Dialog myDialog;
 
+
     public ProductRecyclerAdapter(Context mContext, List<ProductDisplay> mData, String username) {
         this.mContext = mContext;
         this.mData = mData;
@@ -81,7 +82,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         ImageView dialog_image = (ImageView)myDialog.findViewById(R.id.dialog_image);
         //Glide.with(mContext).load(mData.get(position).getP_image()).into(holder.P_image);
         dialog_product_name.setText(mData.get(holder.getAdapterPosition()).getP_name());
-        dialog_product_price.setText(String.valueOf(mData.get(holder.getAdapterPosition()).getPrice()));
+        Double finalPrice = mData.get(holder.getAdapterPosition()).getPrice() * (mData.get(holder.getAdapterPosition()).getP_Gst() /100);
+        finalPrice += mData.get(holder.getAdapterPosition()).getPrice();
+        dialog_product_price.setText(String.valueOf(finalPrice));
         Glide.with(mContext).load(ConstValues.Prodimagelink + mData.get(holder.getAdapterPosition()).getP_image()).into(dialog_image);
         myDialog.show();
         dialog_quantity.setText("1");
@@ -94,7 +97,10 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                 {
                     Toast.makeText(mContext, "Value should be between 0 and 9999", Toast.LENGTH_SHORT).show();
                     myDialog.dismiss();
-                }else{
+                }else if(Integer.parseInt(dialog_quantity.getText().toString())>mData.get(holder.getAdapterPosition()).getP_stock()) {
+                    Toast.makeText(mContext, "Requested Amount of Products is not available in Stock.Please try again later or contact the dealer.", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     int quantity = Integer.parseInt(dialog_quantity.getText().toString());
                     addToCartDirectly(holder,quantity);
                     dialog_quantity.setText("");
