@@ -113,7 +113,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Aditya Pandya"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             android:id="@+id/uname"
@@ -151,7 +151,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="8153977844"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             android:id="@+id/mbnumber"
@@ -188,7 +188,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="adityapandya7001@gmail.com"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             android:id="@+id/email"
@@ -226,7 +226,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Home"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             android:id="@+id/uaddress"

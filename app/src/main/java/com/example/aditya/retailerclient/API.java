@@ -35,8 +35,8 @@ public interface API {
 ////
 
 ////////////////////////////////////////////////////////////////
-   public String BASE_URL = "/webapp/";
-//     public String BASE_URL = "/phpservice/";
+    //public String BASE_URL = "/webapp/";
+    public String BASE_URL = "/phpservice/";
 
     @GET("userCredentials.php")
     Call<List<UserCred>> getUser (@Query("name") String name);
@@ -105,7 +105,7 @@ public interface API {
     Call<List<Void>> emptyCart(@Query("U_name_FK") String U_name_FK);
 
     @GET("getAllOffers.php")
-    Call<List<Offers>> getAllOffers();
+    Call<List<Offers>> getAllOffers(@Query("U_name_FK") String U_name_FK);
 
 
     @FormUrlEncoded

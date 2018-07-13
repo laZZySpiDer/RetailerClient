@@ -23,6 +23,7 @@ import com.example.aditya.retailerclient.Adapters.ProductRecyclerAdapter;
 import com.example.aditya.retailerclient.Model.ProductDisplay;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -87,7 +88,7 @@ public class ProductDetails extends AppCompatActivity {
         btnIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                increaseQty();
+               increaseQty();
             }
         });
 
@@ -99,6 +100,16 @@ public class ProductDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    if(Integer.parseInt(quant.getText().toString()) == 0){
+                        dynamicPrice.setText("0");
+                    }else{
+                        dynamicPrice.setText(String.valueOf(Integer.parseInt(quant.getText().toString())*finalPrice));
+                    }
+                }catch (NumberFormatException  e){
+                    dynamicPrice.setText("0");
+                }
+
 
             }
 
@@ -207,7 +218,11 @@ public class ProductDetails extends AppCompatActivity {
         Double gstFinal = Double.parseDouble(gst);
         finalPrice = priceInitial * (gstFinal /100);
         finalPrice += priceInitial;
-        price.setText("\u20B9"+" "+Double.toString(finalPrice)+" (with GST)");
+
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        Double temp  = Double.valueOf(numberFormat.format(finalPrice));
+        finalPrice = temp;
+        price.setText("\u20B9"+" "+Double.toString(temp)+" (with GST)");
 
 
         ImageView image =findViewById(R.id.image);

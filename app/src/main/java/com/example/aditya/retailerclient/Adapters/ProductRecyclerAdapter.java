@@ -156,8 +156,14 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         //find GST price
         Double priceInitial = mData.get(position).getPrice();
         Double gstFinal = mData.get(position).getP_Gst();
-        Double finalPrice = priceInitial * (gstFinal /100);
-        finalPrice += priceInitial;
+        Double finalPrice = 0.0;
+       try {
+            finalPrice = priceInitial * (gstFinal / 100);
+       }catch(ArrayIndexOutOfBoundsException e){
+           Toast.makeText(mContext, "Stock Insufficient", Toast.LENGTH_SHORT).show();
+       }
+
+           finalPrice += priceInitial;
         holder.P_gstprice.setText("\u20B9"+" "+Double.toString(finalPrice)+" (with GST)");
         holder.P_innerPackQuantity.setText("Inner Pack Quantity : " + String.valueOf(mData.get(position).getP_Ipq()));
         holder.P_gstValue.setText("GST  :  " + String.valueOf(mData.get(position).getP_Gst()));
@@ -186,7 +192,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                 intent.putExtra("image_url",mData.get(position).getP_image());
                 intent.putExtra("image_name",mData.get(position).getP_name());
                 intent.putExtra("prodId",mData.get(position).getP_id_FK());
-                intent.putExtra("image_size",Double.toString(mData.get(position).getP_size()));
+                intent.putExtra("image_size",mData.get(position).getP_size());
                 intent.putExtra("prod_price",Double.toString(mData.get(position).getPrice()));
                 intent.putExtra("gst",Double.toString(mData.get(position).getP_Gst()));
                 intent.putExtra("ipq",Integer.toString(mData.get(position).getP_Ipq()));

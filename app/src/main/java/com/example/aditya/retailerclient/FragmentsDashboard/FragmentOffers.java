@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aditya.retailerclient.API;
@@ -36,6 +37,8 @@ public class FragmentOffers extends Fragment {
     OfferRecyclerAdapter adapter;
     private RecyclerView myrecyclerview;
     private List<Offers> lstOffer;
+    TextView notFound;
+
     LinearLayoutManager linearLayoutManager;
 
     API api;
@@ -47,6 +50,7 @@ public class FragmentOffers extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.offer_fragment,container,false);
         myrecyclerview = (RecyclerView)v.findViewById(R.id.offer_recyclerview);
+        notFound = (TextView)v.findViewById(R.id.textNotFound);
 
         String usernameAuto;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()) ;
@@ -68,14 +72,14 @@ public class FragmentOffers extends Fragment {
 
 
     private void load_data_from_server() {
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstValues.link+API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(API.class);
 
-        Call<List<Offers>> call = api.getAllOffers();
+        Call<List<Offers>> call = api.getAllOffers(prefs.getString("username",""));
         call.enqueue(new Callback<List<Offers>>() {
             @Override
             public void onResponse(Call<List<Offers>> call, Response<List<Offers>> response) {
@@ -86,14 +90,17 @@ public class FragmentOffers extends Fragment {
                     lstOffer.addAll(offers);
                     adapter.notifyDataSetChanged();
                 }catch(NullPointerException e){
+                    notFound.setVisibility(View.VISIBLE);
+                    notFound.setText("No OFFERS are available");
                     Toast.makeText(getContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Offers>> call, Throwable t) {
-
-                Toast.makeText(getContext(), "Offers not Found", Toast.LENGTH_SHORT).show();
+                notFound.setVisibility(View.VISIBLE);
+                notFound.setText("No OFFERS are available");
+                //Toast.makeText(getContext(), "Offers not Found", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -6,12 +6,16 @@ package com.example.aditya.retailerclient;
 
 public class ConstValues {
 
-       public static String link = "http://10.0.2.2";
-      public static String Prodimagelink = "http://10.0.2.2/webapp/p_images/";
-      public static String Billimagelink = "http://10.0.2.2/webapp/p_images/";
+//      public static String link = "http://10.0.2.2";
+//      public static String Prodimagelink = "http://10.0.2.2/webapp/p_images/";
+//      public static String Billimagelink = "http://10.0.2.2/webapp/p_images/";
+//      public static String OfferImageLink = "http://10.0.2.2/webapp/offer_images/";
 
-//    public static String link = "http://james12345-001-site1.etempurl.com";
-//    public static String Prodimagelink = "http://james12345-001-site1.etempurl.com/img/";
-//    public static String Billimagelink = "http://james12345-001-site1.etempurl.com/pic/";
+
+    public static String link = "http://james12345-001-site1.etempurl.com";
+    public static String Prodimagelink = "http://james12345-001-site1.etempurl.com/img/";
+    public static String Billimagelink = "http://james12345-001-site1.etempurl.com/pic/";
+    public static String OfferImageLink = "http://james12345-001-site1.etempurl.com/offerImg/";
+
 
 }

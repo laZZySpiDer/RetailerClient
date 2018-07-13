@@ -10,7 +10,7 @@ public class ProductDisplay {
     int P_id;
     String P_name;
     int P_stock;
-    Double P_size;
+    String P_size;
     int PP_id_FK;
     String P_image;
     Double Price;
@@ -18,7 +18,7 @@ public class ProductDisplay {
     String P_desc;
     int P_Ipq;
 
-    public ProductDisplay(int p_id_FK, String p_name, int p_stock, Double p_size, int PP_id_FK, String p_image, Double price, Double p_gst,String p_desc,int p_ipq) {
+    public ProductDisplay(int p_id_FK, String p_name, int p_stock, String p_size, int PP_id_FK, String p_image, Double price, Double p_gst,String p_desc,int p_ipq) {
         P_id = p_id_FK;
         P_name = p_name;
         P_stock = p_stock;
@@ -87,11 +87,11 @@ public class ProductDisplay {
         P_stock = p_stock;
     }
 
-    public Double getP_size() {
+    public String getP_size() {
         return P_size;
     }
 
-    public void setP_size(Double p_size) {
+    public void setP_size(String p_size) {
         P_size = p_size;
     }
 

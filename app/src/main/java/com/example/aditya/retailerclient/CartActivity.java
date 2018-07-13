@@ -155,8 +155,8 @@ public class CartActivity extends AppCompatActivity {
                 .build();
 
         api = retrofit.create(API.class);
-
-        Call<List<Offers>> call = api.getAllOffers();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Call<List<Offers>> call = api.getAllOffers(prefs.getString("username",""));
         call.enqueue(new Callback<List<Offers>>() {
             @Override
             public void onResponse(Call<List<Offers>> call, Response<List<Offers>> response) {

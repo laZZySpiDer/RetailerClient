@@ -14,6 +14,16 @@ public class Offers {
     private String Offer_Title;
     private double Discount;
 
+    public String getOffer_img() {
+        return Offer_Img;
+    }
+
+    public void setOffer_img(String offer_img) {
+        Offer_Img = offer_img;
+    }
+
+    private String Offer_Img;
+
     public String getDescription() {
         return Description;
     }
@@ -70,7 +80,7 @@ public class Offers {
         Discount = discount;
     }
 
-    public Offers(int offer_Id, double offer_Min_Amount, double offer_Max_Amount, String valid, double discount, String description, String offer_title) {
+    public Offers(int offer_Id, double offer_Min_Amount, double offer_Max_Amount, String valid, double discount, String description, String offer_title,String offer_img) {
         Offer_Id = offer_Id;
         Offer_Min_Amount = offer_Min_Amount;
         Offer_Max_Amount = offer_Max_Amount;
@@ -78,5 +88,6 @@ public class Offers {
         Discount = discount;
         Description = description;
         Offer_Title = offer_title;
+        Offer_Img = offer_img;
     }
 }
