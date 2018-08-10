@@ -42,6 +42,7 @@ public class ProductDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+        dynamicPrice = (TextView)findViewById(R.id.dynamicprice);
         getIncomingIntent();
 
 
@@ -50,8 +51,9 @@ public class ProductDetails extends AppCompatActivity {
         backButton = (ImageView)findViewById(R.id.backProductDetails);
         btnDecrease = (Button)findViewById(R.id.btnDecrease);
         btnIncrease = (Button)findViewById(R.id.btnIncrease);
-        dynamicPrice = (TextView)findViewById(R.id.dynamicprice);
+
         quant.setText("1");
+
 
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,7 +225,7 @@ public class ProductDetails extends AppCompatActivity {
         Double temp  = Double.valueOf(numberFormat.format(finalPrice));
         finalPrice = temp;
         price.setText("\u20B9"+" "+Double.toString(temp)+" (with GST)");
-
+        dynamicPrice.setText(Double.toString(temp));
 
         ImageView image =findViewById(R.id.image);
         Log.d("ABCDEFGH",imageUrl);

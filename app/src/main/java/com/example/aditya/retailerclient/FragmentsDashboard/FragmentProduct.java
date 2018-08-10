@@ -92,14 +92,13 @@ public class FragmentProduct extends Fragment {
                     lstProduct.addAll(prod);
                     adapter.notifyDataSetChanged();
                 }catch(NullPointerException e){
-                    Toast.makeText(getContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ProductDisplay>> call, Throwable t) {
-
-                Toast.makeText(getContext(), "Items not Found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Items not Found", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#c5c7c6"
-                    android:src="@mipmap/noimage"/>
+                    />
             </android.support.v7.widget.CardView>
 
             <LinearLayout

@@ -12,10 +12,11 @@ public class ConstValues {
 //      public static String OfferImageLink = "http://10.0.2.2/webapp/offer_images/";
 
 
-    public static String link = "http://james12345-001-site1.etempurl.com";
-    public static String Prodimagelink = "http://james12345-001-site1.etempurl.com/img/";
-    public static String Billimagelink = "http://james12345-001-site1.etempurl.com/pic/";
-    public static String OfferImageLink = "http://james12345-001-site1.etempurl.com/offerImg/";
+    public static String link = "http://lazzyspider-001-site1.itempurl.com";
+    public static String Prodimagelink = "http://lazzyspider-001-site1.itempurl.com/img/";
+    public static String Billimagelink = "http://lazzyspider-001-site1.itempurl.com/pic/";
+    public static String OfferImageLink = "http://lazzyspider-001-site1.itempurl.com/offerImg/";
+    public static String BroImageLink = "http://lazzyspider-001-site1.itempurl.com/Brochure/";
 
 
 }

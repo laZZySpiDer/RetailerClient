@@ -222,7 +222,8 @@ public class LoginPage extends AppCompatActivity {
     //function to check whether the user is authenticated or not
     private void checkUser(){
 
-        String name  = user.getText().toString();
+        final String name  = user.getText().toString();
+        final String passwdNew = passwd.getText().toString();
         prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstValues.link+API.BASE_URL)
@@ -245,19 +246,21 @@ public class LoginPage extends AppCompatActivity {
                     Log.d("First Time Login : ", String.valueOf(usr.getFirst_time()));
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this) ;
                     prefs.edit().putString("username",usr.getU_name()).apply();
-                    if(passwd.getText().toString().equals(usr.getU_password())){
-                        if(usr.getFirst_time()==0){
+                    if(passwdNew.equals(usr.getU_password())){
+                        if(usr.getStatus()==0){
                             //if not first time login
                             Intent intent = new Intent(LoginPage.this,Dashboard.class);
                             intent.putExtra("Username",usr.getU_name());//pass data from 1 intent to another                                startActivity(intent);
                             finish();
+                            changeStatus(name);
                             startActivity(intent);
                         }else{
                             //if first time login then force to change the password
-                            Intent intent = new Intent(LoginPage.this,Dashboard.class);
-                            intent.putExtra("Username",usr.getU_name());
-                            finish();
-                            startActivity(intent);
+                            Toast.makeText(LoginPage.this,"Log Out from other devices.",Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(LoginPage.this,Dashboard.class);
+//                            intent.putExtra("Username",usr.getU_name());
+//                            finish();
+//                            startActivity(intent);
                         }
                     }else{
                         Toast.makeText(LoginPage.this,"Wrong Credentials",Toast.LENGTH_LONG).show();
@@ -273,6 +276,27 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    private void changeStatus(String name) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstValues.link+API.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        API api = retrofit.create(API.class);
+        Call<Void> call = api.changeLoginStatus(name,1);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 
 
 }

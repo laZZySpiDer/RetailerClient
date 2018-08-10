@@ -109,9 +109,14 @@ public class ProfileActivity extends AppCompatActivity {
     //function to logout the user
     private void logOutUser() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ProfileActivity.this);
+
+        changeStatus(prefs.getString("username",""));
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("username");
+        editor.clear();
+
         editor.apply();
+        prefs.edit().putBoolean("firstTime",true).apply();
+
         Intent intent = new Intent(ProfileActivity.this,LoginPage.class);
         startActivity(intent);
         finish();
@@ -119,7 +124,27 @@ public class ProfileActivity extends AppCompatActivity {
         finishAndRemoveTask();
     }
 
+    private void changeStatus(String name) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstValues.link+API.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        API api = retrofit.create(API.class);
+        Call<Void> call = api.changeLoginStatus(name,0);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 
 
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.aditya.retailerclient.API;
 import com.example.aditya.retailerclient.Adapters.CategoryRecyclerAdapter;
@@ -84,13 +85,20 @@ public class FragmentCategory extends Fragment {
             public void onResponse(Call<List<ProductParent>> call, Response<List<ProductParent>> response) {
                 List<ProductParent> myorder = response.body();
                 lstMyParent.clear();
-                lstMyParent.addAll(myorder);
-                adapter.notifyDataSetChanged();
+                try{
+                    lstMyParent.addAll(myorder);
+                    adapter.notifyDataSetChanged();
+                }catch (NullPointerException ex){
+                    Toast.makeText(getActivity(), "No Categories", Toast.LENGTH_SHORT).show();
+                }catch (Exception ex){
+                    Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onFailure(Call<List<ProductParent>> call, Throwable t) {
-
+                Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
 

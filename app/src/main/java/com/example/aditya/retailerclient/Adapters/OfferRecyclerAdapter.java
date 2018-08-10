@@ -23,8 +23,8 @@ import java.util.List;
 
 public class OfferRecyclerAdapter extends RecyclerView.Adapter<OfferRecyclerAdapter.MyViewHolder> {
 
-    Context mContext;
-    List<Offers> mData;
+    private Context mContext;
+    private List<Offers> mData;
 
     public OfferRecyclerAdapter(Context mContext, List<Offers> mData) {
         this.mContext = mContext;
@@ -46,7 +46,7 @@ public class OfferRecyclerAdapter extends RecyclerView.Adapter<OfferRecyclerAdap
         holder.offerDescription.setText(mData.get(position).getDescription());
         holder.offerDiscount.setText(String.valueOf(mData.get(position).getDiscount()) + " %  Discount");
         Log.d("OFFER IMAGE ",ConstValues.OfferImageLink+mData.get(position).getOffer_img());
-        Glide.with(mContext).load(ConstValues.OfferImageLink+mData.get(position).getOffer_img()).into(holder.offerImage);
+        Glide.with(mContext).load(ConstValues.OfferImageLink+mData.get(position).getOffer_img()+".jpg").into(holder.offerImage);
 
     }
 
@@ -62,7 +62,7 @@ public class OfferRecyclerAdapter extends RecyclerView.Adapter<OfferRecyclerAdap
         private ImageView offerImage;
 
 
-        public MyViewHolder(View itemView) {
+        private MyViewHolder(View itemView) {
             super(itemView);
             offerTitle = (TextView)itemView.findViewById(R.id.offerTitle);
             offerDescription = (TextView)itemView.findViewById(R.id.offerDescription);

@@ -104,11 +104,19 @@ public class ParentWiseProducts extends AppCompatActivity {
 
                 List<ProductDisplay> prod = response.body();
                 // data_list.addAll(prod);
-
-                for(ProductDisplay product : prod ){
-                    lstProduct.add(product);
+                try{
+                    lstProduct.addAll(prod);
+                    adapter.notifyDataSetChanged();
+                }catch (NullPointerException ex){
+                    Toast.makeText(ParentWiseProducts.this, "No items Found", Toast.LENGTH_SHORT).show();
+                }catch (Exception ex){
+                    Toast.makeText(ParentWiseProducts.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
-                adapter.notifyDataSetChanged();
+
+//                for(ProductDisplay product : prod ){
+//                    lstProduct.add(product);
+//                }
+
 
             }
 

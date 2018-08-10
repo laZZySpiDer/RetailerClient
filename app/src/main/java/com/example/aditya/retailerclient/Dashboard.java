@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.aditya.retailerclient.Adapters.DashboardViewPageAdapter;
+import com.example.aditya.retailerclient.FragmentsDashboard.FragmentBrochure;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentCategory;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentMyOrder;
 import com.example.aditya.retailerclient.FragmentsDashboard.FragmentOffers;
@@ -47,7 +48,7 @@ public class Dashboard extends AppCompatActivity {
         adapter.AddFragment(new FragmentCategory(),"Category");
         adapter.AddFragment(new FragmentOffers(),"Offers");
         adapter.AddFragment(new FragmentMyOrder(),"My Orders");
-
+        adapter.AddFragment(new FragmentBrochure(), "Brochures");
 
 
         viewPager.setAdapter(adapter);

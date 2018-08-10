@@ -1,5 +1,6 @@
 package com.example.aditya.retailerclient;
 
+import com.example.aditya.retailerclient.Model.BrochureDisplay;
 import com.example.aditya.retailerclient.Model.CartDisplay;
 import com.example.aditya.retailerclient.Model.MyOrder;
 import com.example.aditya.retailerclient.Model.Offers;
@@ -40,6 +41,9 @@ public interface API {
 
     @GET("userCredentials.php")
     Call<List<UserCred>> getUser (@Query("name") String name);
+
+    @GET("changeStatus.php")
+    Call<Void> changeLoginStatus (@Query("name") String name,@Query("status") int status);
 //
 //    //this is to change that user has logged in once
 //    @GET("loginOnce.php")
@@ -116,7 +120,9 @@ public interface API {
     @GET("changePassword.php")
     Call<List<Void>> changePassword(@Query("U_name_FK") String U_name_FK,@Query("new_Password") String newPassword);
 
-//
+    @GET("getBrochures.php")
+    Call<List<BrochureDisplay>> getBrochures();
+
 //    @GET("resetpassword.php")
 //    Call<List<UserCred>> getphonenumber(@Query("phnnumber") String phonenumber);
 //

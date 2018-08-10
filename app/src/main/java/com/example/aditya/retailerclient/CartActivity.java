@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CartActivity extends AppCompatActivity {
     Button purchaseAll,removeAll;
-    TextView grandTotalLayout;
+   public TextView grandTotalLayout;
     ImageView back;
     CartRecyclerAdapter adapter;
     private RecyclerView myrecyclerview;
@@ -62,8 +62,8 @@ public class CartActivity extends AppCompatActivity {
         purchaseAll = findViewById(R.id.purchaseCartBtn);
         removeAll = findViewById(R.id.emptyCartBtn);
         back = findViewById(R.id.backButton);
-        grandTotalLayout = findViewById(R.id.grandTotal);
-        grandTotalList = new ArrayList<>();
+
+
         lstOffer = new ArrayList<>();
         //load and initialize the recyclerview, also setting the adapter of the recycler view
         loadCartIntent();
@@ -94,6 +94,7 @@ public class CartActivity extends AppCompatActivity {
                 load_data_from_server();
                 myrecyclerview.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                grandTotal(lstCart);
             }
         });
 
@@ -112,9 +113,12 @@ public class CartActivity extends AppCompatActivity {
                 }
                 else{
                     //to get and check whether offer is available or not
+
+
+
                      purchaseCartContent();
                      getAllOffers();
-
+                     grandTotalLayout.setText("0");
                 }
 
             }
@@ -128,22 +132,34 @@ public class CartActivity extends AppCompatActivity {
                    Toast.makeText(CartActivity.this, "Cart is Already Empty", Toast.LENGTH_SHORT).show();
                }else{
                    removeCartContent();
+                   grandTotalLayout.setText("0");
                }
             }
         });
 
     }
 
-    private void grandTotal(){
+    public void grandTotal(List<CartDisplay> lstCartTotal){
 
-       Double totalPriceInCart = 0.0;
-       for(Double indiPrice : grandTotalList){
-           totalPriceInCart +=indiPrice;
-       }
-        grandTotalList.clear();
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        grandTotalNoDiscount = Double.valueOf(numberFormat.format(totalPriceInCart));
-        grandTotalLayout.setText(String.valueOf(grandTotalNoDiscount));
+        grandTotalLayout = findViewById(R.id.grandTotal);
+        grandTotalList = new ArrayList<>();
+        if(lstCartTotal.isEmpty()){
+            grandTotalLayout.setText("0");
+        }else{
+
+            for(CartDisplay cartContent : lstCartTotal){
+                grandTotalList.add(cartContent.getPrice());
+            }
+            Double totalPriceInCart = 0.0;
+            for(Double indiPrice : grandTotalList){
+                totalPriceInCart +=indiPrice;
+            }
+            grandTotalList.clear();
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            grandTotalNoDiscount = Double.valueOf(numberFormat.format(totalPriceInCart));
+            grandTotalLayout.setText(String.valueOf(grandTotalNoDiscount));
+        }
+
     }
 
 
@@ -169,6 +185,7 @@ public class CartActivity extends AppCompatActivity {
 
                     }else{
                         //Toast.makeText(CartActivity.this, "No Offer Available", Toast.LENGTH_SHORT).show();
+                        addToBill(grandTotalNoDiscount,0);
                     }
                     lstOffer.add(offers);
                 }
@@ -250,13 +267,15 @@ public class CartActivity extends AppCompatActivity {
             public void onResponse(Call<List<CartDisplay>> call, Response<List<CartDisplay>> response) {
                 List<CartDisplay> cart = response.body();
                 lstCart.clear();
-                for(CartDisplay cartContent : cart){
-                    grandTotalList.add(cartContent.getPrice());
-                    lstCart.add(cartContent);
-                }
+                  lstCart.addAll(cart);
+//                for(CartDisplay cartContent : cart){
+////                    grandTotalList.add(cartContent.getPrice());
+//                    lstCart.add(cartContent);
+//                }
                 //function call to set Total Amount of the contents in cart
-                grandTotal();
                 adapter.notifyDataSetChanged();
+                grandTotal(lstCart);
+
             }
 
             @Override
@@ -316,6 +335,7 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(CartActivity.this, "Cart Emptied", Toast.LENGTH_SHORT).show();
                 lstCart.clear();
                 adapter.notifyDataSetChanged();
+                grandTotalLayout.setText("0.00");
             }
 
             @Override

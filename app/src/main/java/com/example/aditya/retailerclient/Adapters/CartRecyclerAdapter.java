@@ -2,7 +2,6 @@ package com.example.aditya.retailerclient.Adapters;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,17 +15,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.aditya.retailerclient.API;
+import com.example.aditya.retailerclient.CartActivity;
 import com.example.aditya.retailerclient.ConstValues;
-import com.example.aditya.retailerclient.FragmentsDashboard.FragmentCart;
 import com.example.aditya.retailerclient.Model.CartDisplay;
-import com.example.aditya.retailerclient.ProductDetails;
 import com.example.aditya.retailerclient.R;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
-
-import javax.microedition.khronos.opengles.GL;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +38,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
     List<CartDisplay> mData;
     String username;
     Dialog myDialog;
+    CartActivity cartActivity;
+
 
     public CartRecyclerAdapter(Context mContext, List<CartDisplay> mData, String username) {
         this.mContext = mContext;
@@ -79,6 +75,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         holder.cart_P_price.setText("\u20B9"+String.valueOf(mData.get(position).getPrice()));
         Glide.with(mContext).load(ConstValues.Prodimagelink + mData.get(position).getP_image()).into(holder.p_image);
 
+        cartActivity = new CartActivity();
 
         holder.cart_Remove_from_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +83,12 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 RemoveFromCart(position);
                 mData.remove(position);
                 notifyDataSetChanged();
+//              cartActivity.grandTotal(mData);
+                
+                if(mData.isEmpty()){
 
+                    Toast.makeText(mContext, "Pull Down To Refresh", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -111,6 +113,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
     }
 
     private void RemoveFromCart(int position){
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstValues.link+API.BASE_URL)
@@ -123,6 +126,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
             @Override
             public void onResponse(Call<List<CartDisplay>> call, Response<List<CartDisplay>> response) {
                 Toast.makeText(mContext, "Product Removed From cart", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -146,6 +150,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         private TextView cart_P_quantity;
         private ImageButton cart_Remove_from_cart;
 
+
         public CartViewHolder(View itemView) {
             super(itemView);
             p_image = (ImageView)itemView.findViewById(R.id.cart_image_product);
@@ -153,6 +158,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
             cart_P_price = (TextView)itemView.findViewById(R.id.cart_product_price);
             cart_P_quantity = (TextView)itemView.findViewById(R.id.cart_product_quantity);
             cart_Remove_from_cart = (ImageButton) itemView.findViewById(R.id.cart_product_remove);
+
         }
     }
 

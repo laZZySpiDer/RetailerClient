@@ -92,7 +92,7 @@ public class FragmentOffers extends Fragment {
                 }catch(NullPointerException e){
                     notFound.setVisibility(View.VISIBLE);
                     notFound.setText("No OFFERS are available");
-                    Toast.makeText(getContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
 
